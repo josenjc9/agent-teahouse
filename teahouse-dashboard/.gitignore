@@ -4,6 +4,7 @@ dist/
 .DS_Store
 __pycache__/
 providers/services.json
+providers/quota.json
 .env
 .env.*
 *.pem

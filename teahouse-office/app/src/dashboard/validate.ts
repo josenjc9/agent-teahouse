@@ -59,6 +59,13 @@ export function checkBlock(b: unknown, at: string): string[] {
         if (![...TONES, 'off'].includes(r.state as string)) e.push(`${at}.rows[${i}].state：必須是 ok／warn／bad／off`)
       })
       break
+    case 'quota':
+      arr('items').forEach((r, i) => {
+        if (!isObj(r) || !isStr(r.label)) return e.push(`${at}.items[${i}].label：必須是非空字串`)
+        if (!isNum(r.used) || r.used < 0) e.push(`${at}.items[${i}].used：必須是 0 以上的數字（現在是 ${JSON.stringify(r.used)}）`)
+        if (!isNum(r.limit) || r.limit <= 0) e.push(`${at}.items[${i}].limit：必須是大於 0 的數字（現在是 ${JSON.stringify(r.limit)}）`)
+      })
+      break
     case 'alerts':
       arr('items', 0).forEach((r, i) => {
         if (!isObj(r) || !isStr(r.text)) return e.push(`${at}.items[${i}].text：必須是非空字串`)
@@ -66,7 +73,7 @@ export function checkBlock(b: unknown, at: string): string[] {
       })
       break
     default:
-      e.push(`${at}.type：不認得「${String(b.type)}」，可用 verdict／stat／trend／table／status／alerts`)
+      e.push(`${at}.type：不認得「${String(b.type)}」，可用 verdict／stat／trend／table／status／quota／alerts`)
   }
   return e
 }

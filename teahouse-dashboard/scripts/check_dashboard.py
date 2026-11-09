@@ -8,7 +8,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT = os.path.join(HERE, '..', 'app', 'public', 'data', 'dashboard.json')
 TONES = ('ok', 'warn', 'bad')
 KNOWN = {'verdict': {'id','type','title','tone','headline','detail'}, 'stat': {'id','type','title','items'}, 'trend': {'id','type','title','kind','unit','series'},
-         'table': {'id','type','title','columns','rows'}, 'status': {'id','type','title','rows'}, 'alerts': {'id','type','title','items'}}
+         'table': {'id','type','title','columns','rows'}, 'status': {'id','type','title','rows'}, 'quota': {'id','type','title','items'}, 'alerts': {'id','type','title','items'}}
 
 def s_(v): return isinstance(v, str) and v.strip() != ''
 def n_(v): return isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)
@@ -66,12 +66,17 @@ def block(b, at, e, w):
         for i, r in enumerate(arr('rows')):
             if not o_(r) or not s_(r.get('label')): e.append(f'{at}.rows[{i}].label：必須是非空字串'); continue
             if r.get('state') not in TONES + ('off',): e.append(f'{at}.rows[{i}].state：必須是 ok／warn／bad／off')
+    elif t == 'quota':
+        for i, r in enumerate(arr('items')):
+            if not o_(r) or not s_(r.get('label')): e.append(f'{at}.items[{i}].label：必須是非空字串'); continue
+            if not (n_(r.get('used')) and r['used'] >= 0): e.append(f'{at}.items[{i}].used：必須是 0 以上的數字（現在是 {json.dumps(r.get("used"), ensure_ascii=False)}）')
+            if not (n_(r.get('limit')) and r['limit'] > 0): e.append(f'{at}.items[{i}].limit：必須是大於 0 的數字（現在是 {json.dumps(r.get("limit"), ensure_ascii=False)}）')
     elif t == 'alerts':
         for i, r in enumerate(arr('items', 0)):
             if not o_(r) or not s_(r.get('text')): e.append(f'{at}.items[{i}].text：必須是非空字串'); continue
             if r.get('level') not in ('info', 'warn', 'bad'): e.append(f'{at}.items[{i}].level：必須是 info／warn／bad')
     else:
-        e.append(f'{at}.type：不認得「{t}」，可用 verdict／stat／trend／table／status／alerts')
+        e.append(f'{at}.type：不認得「{t}」，可用 verdict／stat／trend／table／status／quota／alerts')
 
 def check(path):
     e, w = [], []

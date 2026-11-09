@@ -61,6 +61,26 @@ function Status({ b }: { b: Extract<Block, { type: 'status' }> }) {
   )
 }
 
+const quotaTone = (pct: number) => (pct >= 90 ? 'bad' : pct >= 70 ? 'warn' : 'ok')
+function Quota({ b }: { b: Extract<Block, { type: 'quota' }> }) {
+  return (
+    <ul className="rows">
+      {b.items.map((r, i) => {
+        const pct = (r.used / r.limit) * 100, tone = quotaTone(pct), u = r.unit ? ` ${r.unit}` : ''
+        return (
+          <li key={i} className={`row qt-${tone}`}>
+            <div className="qt">
+              <div className="qt-head"><span className="rl">{r.label}</span><span className="num qt-pct">{Math.round(pct)}%</span></div>
+              <div className="qt-bar" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.min(100, Math.round(pct))} aria-label={r.label}><i style={{ width: `${Math.min(100, pct)}%` }} /></div>
+              <div className="qt-foot"><span className="num">{r.used.toLocaleString()} / {r.limit.toLocaleString()}{u}</span>{r.resetAt && <span>重置：{r.resetAt}</span>}</div>
+            </div>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
 function Alerts({ b }: { b: Extract<Block, { type: 'alerts' }> }) {
   if (!b.items.length) return <p className="empty">目前沒有提醒</p>
   return (
@@ -77,7 +97,7 @@ function Alerts({ b }: { b: Extract<Block, { type: 'alerts' }> }) {
 
 export function Card({ b }: { b: Block }) {
   if (b.type === 'verdict') return <section className="card span-all verdict-card"><Verdict b={b} /></section>
-  const wide = b.type === 'trend' || b.type === 'table' || b.type === 'stat'
+  const wide = b.type === 'trend' || b.type === 'table' || b.type === 'stat' || b.type === 'quota'
   return (
     <section className={`card ${b.type === 'stat' ? 'span-all' : wide ? 'span-2' : ''}`}>
       <h3 className="ctitle">{b.title}</h3>
@@ -85,6 +105,7 @@ export function Card({ b }: { b: Block }) {
       {b.type === 'trend' && <Trend kind={b.kind} series={b.series} unit={b.unit} />}
       {b.type === 'table' && <Table b={b} />}
       {b.type === 'status' && <Status b={b} />}
+      {b.type === 'quota' && <Quota b={b} />}
       {b.type === 'alerts' && <Alerts b={b} />}
     </section>
   )

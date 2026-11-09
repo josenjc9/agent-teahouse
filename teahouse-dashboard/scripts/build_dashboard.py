@@ -44,6 +44,10 @@ def verdict(blocks):
             off += sum(r['state'] == 'off' for r in b['rows'])
             bad += sum(r['state'] == 'bad' for r in b['rows'])
             warn += sum(r['state'] == 'warn' for r in b['rows'])
+        elif b['type'] == 'quota':
+            for r in b['items']:
+                pct = r['used'] / r['limit'] * 100
+                bad += pct >= 90; warn += 70 <= pct < 90
         elif b['type'] == 'alerts':
             bad += sum(r['level'] == 'bad' for r in b['items'])
             warn += sum(r['level'] == 'warn' for r in b['items'])

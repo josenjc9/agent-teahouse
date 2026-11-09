@@ -11,7 +11,7 @@ def cp(src, dst):
     s, d = os.path.join(ROOT, src), os.path.join(OUT, dst)
     os.makedirs(os.path.dirname(d), exist_ok=True)
     if os.path.isdir(s):
-        shutil.copytree(s, d, ignore=shutil.ignore_patterns('__pycache__', 'services.json', '*.pyc'))
+        shutil.copytree(s, d, ignore=shutil.ignore_patterns('__pycache__', 'services.json', 'quota.json', '*.pyc'))
     else:
         shutil.copy2(s, d)
 

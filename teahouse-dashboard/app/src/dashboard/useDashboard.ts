@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import { useEffect, useState } from 'react'
 import { parseDashboard, type Parsed } from './validate'
 

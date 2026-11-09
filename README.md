@@ -23,7 +23,7 @@
 | 資料夾 | 做什麼 | 適合 |
 |---|---|---|
 | [`teahouse-office/`](teahouse-office/) | 3D 和風庭院 Office：自訂角色（人設、對白、動作圖）、任務看板、角色依 agent 狀態走動坐下，內含儀表板分頁 | 想把自己的 AI 團隊「看得見」 |
-| [`teahouse-dashboard/`](teahouse-dashboard/) | 單獨的玻璃質感儀表板：一份 JSON 契約、六種卡片、自己寫資料源接資料 | 只想要儀表板、不要 3D |
+| [`teahouse-dashboard/`](teahouse-dashboard/) | 單獨的玻璃質感儀表板：一份 JSON 契約、七種卡片、自己寫資料源接資料 | 只想要儀表板、不要 3D |
 
 兩邊的儀表板資料格式相同，可以先用 dashboard、之後再換成 office。
 

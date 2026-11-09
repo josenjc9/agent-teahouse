@@ -217,6 +217,26 @@
           "text": "範例：本週完成數創新高"
         }
       ]
+    },
+    {
+      "id": "quota",
+      "type": "quota",
+      "title": "額度（示範）",
+      "items": [
+        {
+          "label": "範例 A：每 5 小時",
+          "used": 62,
+          "limit": 100,
+          "unit": "%",
+          "resetAt": "今天 18:00"
+        },
+        {
+          "label": "範例 B：本月",
+          "used": 9,
+          "limit": 10,
+          "unit": "GB"
+        }
+      ]
     }
   ]
 }

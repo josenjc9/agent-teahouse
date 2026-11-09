@@ -4,6 +4,7 @@ export type StatItem = { label: string; value: number; unit?: string; hint?: str
 export type Point = { x: string; y: number }
 export type Series = { name: string; points: Point[] }
 export type Column = { key: string; label: string; align?: 'left' | 'right' }
+export type QuotaItem = { label: string; used: number; limit: number; unit?: string; resetAt?: string }
 export type Cell = string | number | null
 
 export type Block =
@@ -12,6 +13,7 @@ export type Block =
   | { id: string; type: 'trend'; title: string; kind: 'line' | 'bar'; unit?: string; series: Series[] }
   | { id: string; type: 'table'; title: string; columns: Column[]; rows: Record<string, Cell>[] }
   | { id: string; type: 'status'; title: string; rows: { label: string; state: Tone | 'off'; detail?: string }[] }
+  | { id: string; type: 'quota'; title: string; items: QuotaItem[] }
   | { id: string; type: 'alerts'; title: string; items: { level: 'info' | 'warn' | 'bad'; text: string; action?: string }[] }
 
 export type DashboardFile = { version: 1; title: string; updatedAt?: string; demo?: boolean; blocks: unknown[] }
