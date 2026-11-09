@@ -19,14 +19,21 @@ function texture(id: string, seq: string) {
 }
 
 type Lines = Record<string, string[]>
-/** 角色對白：working 上工、done 做完、stuck 卡住、idle 閒聊、click 被點到、greet 剛出現。沒有 dialogue.json 就不顯示氣泡 */
-function useDialogue(id: string, status: string, selected: boolean) {
+/** 角色對白：working 上工、done 做完、stuck 卡住、idle 閒聊、click 被點到、greet 剛出現。沒有 dialogue.json 就不顯示氣泡。
+ *  agent 用 set_state.py <角色> say "…" 指定的話（state.say）優先，顯示期間不會被自動對白蓋掉 */
+function useDialogue(id: string, status: string, selected: boolean, said?: string, saidAt?: number) {
   const [lines, setLines] = useState<Lines | null>(null)
   const [say, setSay] = useState<string | null>(null)
   useEffect(() => { fetch(`/characters/${id}/dialogue.json`).then((r) => (r.ok ? r.json() : null)).then(setLines).catch(() => setLines(null)) }, [id])
   const pick = (k: string) => { const a = lines?.[k]; return a?.length ? a[Math.floor(Math.random() * a.length)] : null }
   const timer = useRef(0)
-  const show = (t: string | null, ms = 4200) => { if (!t) return; setSay(t); window.clearTimeout(timer.current); timer.current = window.setTimeout(() => setSay(null), ms) }
+  const hold = useRef(0)
+  const show = (t: string | null, ms = 4200, force = false) => {
+    if (!t || (!force && Date.now() < hold.current)) return
+    if (force) hold.current = Date.now() + ms
+    setSay(t); window.clearTimeout(timer.current); timer.current = window.setTimeout(() => setSay(null), ms)
+  }
+  useEffect(() => { if (said && saidAt && Date.now() - saidAt < 15000) show(said, 6000, true) }, [said, saidAt]) // eslint-disable-line react-hooks/exhaustive-deps
   const prev = useRef('')
   useEffect(() => { if (!lines) return; if (prev.current === '') show(pick('greet')); else if (status === 'working') show(pick('working')); prev.current = status || 'x' }, [status, lines]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { if (selected) show(pick('click')) }, [selected]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -51,7 +58,7 @@ export function Character({ cfg, layout, state, selected, onSelect, report }: Pr
   const { camera } = useThree()
   const [atlas, setAtlas] = useState<Atlas | null>(null)
   const seat = useMemo(() => layout.seatOf(cfg.seat), [layout, cfg.seat])
-  const say = useDialogue(cfg.id, state.status, selected)
+  const say = useDialogue(cfg.id, state.status, selected, state.say, state.sayAt)
   const figH = layout.figureH * cfg.scale
   const planeH = figH / FIG_RATIO
   const planeW = planeH * (280 / 260)

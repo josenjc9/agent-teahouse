@@ -48,21 +48,15 @@
       "cols": 4,
       "rows": 1,
       "count": 4
-    },
-    "rest_stretch": {
-      "cols": 6,
-      "rows": 1,
-      "count": 6
     }
   },
-  "work": "work",
-  "talk": "talk",
   "rest": [
-    "rest_wave",
-    "rest_stretch"
+    "rest_wave"
   ],
   "side": [
     "still_left",
     "walk_left"
-  ]
+  ],
+  "work": "work",
+  "talk": "talk"
 }

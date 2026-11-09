@@ -39,7 +39,7 @@ Node.js 20.19+（或 22.12+）、Python 3.9+、瀏覽器。做角色圖時另需
 | `SECURITY.md` | 它會碰什麼、不會碰什麼；分享前的檢查 |
 
 ## 範例角色與素材
-兩位範例角色「麻糬」「小黑」由 `scripts/make_sample_character.py` 用程式畫出，場景的幾何與貼圖也全部由程式產生，不含任何第三方美術素材。前端使用的開源套件（React、three.js、react-three-fiber 等）各依其授權，安裝時由 npm 取得，不隨本 repo 散佈。
+兩位範例角色「麻糬」「小黑」是原創設計，由 AI 生圖工具（OpenAI 圖像生成，經 Codex CLI）依本套件的人設卡與提示詞流程製作，人設卡見 `references/examples/`；和風庭院的幾何與貼圖全部由程式產生。整個套件不含任何第三方美術素材。`scripts/make_sample_character.py` 另可快速產生簡易佔位角色，用來在還沒有角色圖時先跑通流程。前端使用的開源套件（React、three.js、react-three-fiber 等）各依其授權，安裝時由 npm 取得，不隨本 repo 散佈。
 
 ## 還沒驗證的部分
 Codex 以外的生圖工具、在真實 Claude Code／Codex 工作階段跑完整條接入、手機與 Safari／Windows。遇到問題歡迎開 issue。

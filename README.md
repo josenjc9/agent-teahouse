@@ -4,6 +4,10 @@
 
 *Two agent skills: a cozy 3D Japanese-courtyard office where your AI agents walk to their desks while working, and a glassy local-first dashboard. Runs entirely on your machine.*
 
+![角色隨 agent 狀態走動並互相對話：待命時在庭院散步，收到工作指令後走進會議和室坐下，兩位用對話泡泡交談，完成後離座](docs/office-demo.gif)
+
+*每一步由一行指令觸發：`set_state.py mochi working "整理本週排程"` 讓角色去工作，`set_state.py mochi say "…"` 讓角色開口說話。兩位範例角色為原創設計。*
+
 ![和風庭院 Office：黃昏](docs/office-dusk.png)
 
 | 白天 | 夜晚 | 儀表板 |
@@ -44,7 +48,7 @@ Node.js 20.19+（或 22.12+）、Python 3.9+、瀏覽器。做角色圖另需 Pi
 - 詳見各資料夾的 `SECURITY.md`。發現安全問題請用 **Security → Report a vulnerability** 私下回報。
 
 ## 授權與素材
-程式碼以 [MIT](LICENSE) 授權。範例角色與 3D 場景全部由程式產生，不含第三方美術素材。前端開源套件（React、three.js、react-three-fiber 等）各依其授權，由 npm 安裝時取得。
+程式碼以 [MIT](LICENSE) 授權。兩位範例角色是原創設計，由 AI 生圖工具（OpenAI 圖像生成，經 Codex CLI）依 `teahouse-office` 自己的人設卡與提示詞流程製作（人設卡見 `teahouse-office/references/examples/`）；3D 場景的幾何與貼圖全部由程式產生。不含第三方美術素材。前端開源套件（React、three.js、react-three-fiber 等）各依其授權，由 npm 安裝時取得。
 
 ## 目前還沒驗證
 Codex 以外的生圖工具、真實 Claude Code／Codex 工作階段的完整接入、手機與 Safari／Windows。歡迎開 issue 回報。

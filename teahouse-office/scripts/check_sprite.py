@@ -80,7 +80,7 @@ def finish_auto(im, a, frames, issues, warns):
     import importlib.util, os
     spec = importlib.util.spec_from_file_location('build_atlas', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'build_atlas.py'))
     ba = importlib.util.module_from_spec(spec); spec.loader.exec_module(ba)
-    figs = ba.figures_auto(im)
+    figs = ba.figures_auto(im, None, frames)
     print(f'找到 {len(figs)} 個角色')
     if not figs:
         issues.append('❌ 圖裡找不到角色')
@@ -91,7 +91,7 @@ def finish_auto(im, a, frames, issues, warns):
         odd = [i + 1 for i, h in enumerate(hs) if abs(h - m) > m * 0.25]
         if odd: warns.append(f'⚠️ 第 {odd} 個角色大小跟其他差很多（同一張應該是同一個動作的連續畫面）')
     W, H = a.size; b = a.point(lambda v: 255 if v > 40 else 0)
-    edge = any(b.crop(box).getbbox() for box in ((0, 0, W, 2), (0, H - 2, W, H), (0, 0, 2, H), (W - 2, 0, W, H)))
+    edge = any(sum(1 for v in b.crop(box).getdata() if v) > 12 for box in ((0, 0, W, 2), (0, H - 2, W, H), (0, 0, 2, H), (W - 2, 0, W, H)))   # 零星幾個像素不算被切到
     if edge: issues.append('❌ 角色碰到整張圖的邊（可能被切到）：請在提示詞要求「四周留白、角色完整入鏡」')
     for w_ in warns: print(w_)
     for i_ in issues: print(i_)

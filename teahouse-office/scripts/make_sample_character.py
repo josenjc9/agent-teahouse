@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""產生原創範例角色的精靈圖集（程序繪製，無任何第三方美術）。
+"""產生簡易佔位角色的精靈圖集（程序繪製，無任何第三方美術）：還沒有角色圖時先用它跑通流程。
 用法：python3 scripts/make_sample_character.py <輸出資料夾> <id> [hair] [shirt] [ears|glasses|none]
 輸出：<輸出資料夾>/<id>/ 底下每個動作一張橫排 PNG（每格 280x260、透明底、腳底在 y=250）＋ atlas.json。
 這同時是「圖集格式」的參考實作：自己的角色圖照同樣格式放進去就能用。"""

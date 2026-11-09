@@ -46,14 +46,18 @@ description: 帶使用者做出自己的 3D 虛擬 Office（和風庭院茶屋�
 ```bash
 cd app && npm install && npm run dev      # 開 http://127.0.0.1:5180
 ```
-內建兩位**原創範例角色**（麻糬、小黑，程序繪製，無第三方美術）。重做範例圖：
-`python3 scripts/make_sample_character.py app/public/characters <id> <髮色> <衣色> <ears|glasses|none>`（需 Pillow）
+內建兩位**原創範例角色**（麻糬、小黑）：用 AI 生圖工具（Codex）照本流程做的動漫風 Q 版，人設卡見 `references/examples/`，無第三方美術。
+還沒有角色圖、只想先跑通流程時，可用 `python3 scripts/make_sample_character.py app/public/characters <id> <髮色> <衣色> <ears|glasses|none>` 產生簡易佔位角色（需 Pillow）。
 
 ## 3. 推送狀態（任何 agent 都能呼叫）
 ```bash
 python3 scripts/set_state.py <角色id> <working|idle|rest> "任務名稱（10 字內）"
 ```
 `working`＝走到座位、坐下工作、頭上顯示任務；`idle`／`rest`＝離開座位到休息點閒晃。頁面每 2 秒讀一次。
+讓角色開口說話（對話泡泡約 6 秒，狀態與任務不變；多個 agent 可以互相對話）：
+```bash
+python3 scripts/set_state.py <角色id> say "要說的話（40 字內）"
+```
 接入方式見 `接入說明.md`（通用：任何能執行 shell 指令的 agent 都一樣；有 hook 的工具可全自動；純聊天機器人只能手動）。
 
 ## 3b. 儀表板（選用）

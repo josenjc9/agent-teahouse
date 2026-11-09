@@ -58,7 +58,7 @@ def cells_of(im, cols, rows, pick):
         if bb: out.append(cell.crop(bb))
     return out
 
-def figures_auto(im, take=None):
+def figures_auto(im, take=None, expect=None):
     """不靠格子：在透明圖上找出一個個分開的角色（生圖工具常不照格數排版）。
     依列（上到下）再依欄（左到右）排序；take='a-b' 取排序後第 a 到 b 個（從 0 起）。"""
     im = clean_haze(im.copy())
@@ -105,6 +105,33 @@ def figures_auto(im, take=None):
                 bb = solid(part)
                 if bb: res.append((fx + bb[0], fy + oy + bb[1], part.crop(bb)))
         figs = res
+    # 左右兩個角色的手或頭髮碰在一起也會黏成一個：依寬度比例在最細的欄切開
+    def split_w(fx, fy, f, k):
+        k = max(2, min(k, 6))
+        a = f.split()[3].point(lambda v: 255 if v > 40 else 0); W, H = a.size
+        col = [sum(1 for v in a.crop((x, 0, x + 1, H)).getdata() if v) for x in range(W)]
+        cuts = [0]
+        for j in range(1, k):
+            ideal, span = j * W / k, 0.35 * W / k
+            cuts.append(min(range(int(ideal - span), int(ideal + span) + 1), key=lambda x: col[min(max(x, 0), W - 1)]))
+        cuts.append(W)
+        out_ = []
+        for c0, c1 in zip(cuts, cuts[1:]):
+            part = f.crop((c0, 0, c1, H)); bb = solid(part)
+            if bb: out_.append((fx + c0 + bb[0], fy + bb[1], part.crop(bb)))
+        return out_
+    if len(figs) >= 3:   # 比一般角色寬 1.6 倍以上的，視為黏在一起
+        typ_w = statistics.median(f[2].width for f in figs); res = []
+        for fx, fy, f in figs:
+            k = round(f.width / typ_w)
+            res += split_w(fx, fy, f, k) if (f.width > typ_w * 1.6 and k >= 2) else [(fx, fy, f)]
+        figs = res
+    while expect and 0 < len(figs) < expect:   # 已知該有幾個：不夠就把最寬的那個切開
+        i = max(range(len(figs)), key=lambda i: figs[i][2].width)
+        fx, fy, f = figs.pop(i)
+        parts = split_w(fx, fy, f, expect - len(figs))
+        if len(parts) < 2: figs.insert(i, (fx, fy, f)); break
+        figs += parts
     # 分列：垂直中心相差不到半個角色高算同一列；列內由左到右
     figs.sort(key=lambda f: f[1] + f[2].height / 2)
     rows, med_h = [], statistics.median(f[2].height for f in figs)
@@ -144,7 +171,7 @@ def main():
         if f not in sheets: sheets[f] = Image.open(f).convert('RGBA')
         pick = s.get('pick', 'auto' if 'cols' not in s else 'all')
         if pick == 'auto' or pick.startswith('auto:'):
-            cs = figures_auto(sheets[f], pick[5:] or None)
+            cs = figures_auto(sheets[f], pick[5:] or None, s.get('frames'))
         else:
             cs = cells_of(sheets[f], s['cols'], s['rows'], pick)
         if not cs: print('⚠️ 沒切出任何角色：', s['name']); continue
