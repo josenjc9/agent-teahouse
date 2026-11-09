@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import type { Layout, V3 } from './layout'
+import { asset } from './data'
 import type { Atlas, CharCfg, CharState } from './types'
 
 const FIG_RATIO = 0.81        // 圖框裡角色約佔 81%
@@ -14,7 +15,7 @@ const texCache = new Map<string, THREE.Texture>()
 function texture(id: string, seq: string) {
   const k = id + '/' + seq
   let t = texCache.get(k)
-  if (!t) { t = loader.load(`/characters/${id}/${seq}.png`); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; texCache.set(k, t) }
+  if (!t) { t = loader.load(asset(`characters/${id}/${seq}.png`)); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; texCache.set(k, t) }
   return t
 }
 
@@ -24,7 +25,7 @@ type Lines = Record<string, string[]>
 function useDialogue(id: string, status: string, selected: boolean, said?: string, saidAt?: number) {
   const [lines, setLines] = useState<Lines | null>(null)
   const [say, setSay] = useState<string | null>(null)
-  useEffect(() => { fetch(`/characters/${id}/dialogue.json`).then((r) => (r.ok ? r.json() : null)).then(setLines).catch(() => setLines(null)) }, [id])
+  useEffect(() => { fetch(asset(`characters/${id}/dialogue.json`)).then((r) => (r.ok ? r.json() : null)).then(setLines).catch(() => setLines(null)) }, [id])
   const pick = (k: string) => { const a = lines?.[k]; return a?.length ? a[Math.floor(Math.random() * a.length)] : null }
   const timer = useRef(0)
   const hold = useRef(0)
@@ -75,7 +76,7 @@ export function Character({ cfg, layout, state, selected, onSelect, report }: Pr
   })
   const live = useRef(state); live.current = state
 
-  useEffect(() => { fetch(`/characters/${cfg.id}/atlas.json`).then((r) => r.json()).then((m: Atlas) => { setAtlas(m); Object.keys(m.seq).forEach((k) => texture(cfg.id, k)) }) }, [cfg.id])
+  useEffect(() => { fetch(asset(`characters/${cfg.id}/atlas.json`)).then((r) => r.json()).then((m: Atlas) => { setAtlas(m); Object.keys(m.seq).forEach((k) => texture(cfg.id, k)) }) }, [cfg.id])
 
   useFrame((_, raw) => {
     const dt = Math.min(raw, 0.05), s = S.current, now = (s.t += dt)

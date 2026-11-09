@@ -4,6 +4,8 @@
 
 *Two agent skills: a cozy 3D Japanese-courtyard office where your AI agents walk to their desks while working, and a glassy local-first dashboard. Runs entirely on your machine.*
 
+**[▶ 線上預覽（不用安裝，點開就能看）](https://josenjc9.github.io/agent-teahouse/)**　｜　[下載 ZIP](https://github.com/josenjc9/agent-teahouse/archive/refs/heads/main.zip)
+
 ![角色隨 agent 狀態走動並互相對話：待命時在庭院散步，收到工作指令後走進會議和室坐下，兩位用對話泡泡交談，完成後離座](docs/office-demo.gif)
 
 *每一步由一行指令觸發：`set_state.py mochi working "整理本週排程"` 讓角色去工作，`set_state.py mochi say "…"` 讓角色開口說話。兩位範例角色為原創設計。*
@@ -24,6 +26,13 @@
 | [`teahouse-dashboard/`](teahouse-dashboard/) | 單獨的玻璃質感儀表板：一份 JSON 契約、六種卡片、自己寫資料源接資料 | 只想要儀表板、不要 3D |
 
 兩邊的儀表板資料格式相同，可以先用 dashboard、之後再換成 office。
+
+## 不會用 GitHub？
+1. 點上方的 **下載 ZIP**（不需要帳號、不需要 git），解壓縮。
+2. 把解壓縮後的 `teahouse-office` 資料夾放進你的 AI agent（例如 Claude Code 的 `~/.claude/skills/`；Codex 或其他 agent 請它先讀 `SKILL.md`）。
+3. 對它說：**「幫我安裝並開起來」**，之後再說「幫我做我自己的角色」。
+
+由 agent 替你執行安裝指令，你不必自己開終端機（這個流程尚未在各家真實 agent 上逐一驗證，見文末）。線上預覽只是展示，不能接你自己的 agent。
 
 ## 快速開始
 ```bash

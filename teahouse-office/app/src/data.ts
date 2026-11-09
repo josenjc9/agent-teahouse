@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import type { BoardCol, CharCfg, SceneCfg, StateFile } from './types'
 
+/** 檔案網址：預設從網站根目錄讀；放在子路徑（例如 GitHub Pages）時由 vite 的 base 帶入 */
+export const asset = (p: string) => import.meta.env.BASE_URL + p.replace(/^\//, '')
+
 /** 每隔 ms 重新讀一次（加時間戳避免快取），讀失敗就保留舊資料 */
 export function usePoll<T>(url: string, parse: (r: Response) => Promise<T>, ms: number, initial: T | null = null) {
   const [data, setData] = useState<T | null>(initial)
@@ -9,7 +12,7 @@ export function usePoll<T>(url: string, parse: (r: Response) => Promise<T>, ms: 
     let alive = true
     const load = async () => {
       try {
-        const r = await fetch(`${url}${url.includes('?') ? '&' : '?'}t=${Date.now()}`, { cache: 'no-store' })
+        const r = await fetch(`${asset(url)}${url.includes('?') ? '&' : '?'}t=${Date.now()}`, { cache: 'no-store' })
         if (!r.ok) throw new Error(`${url} → ${r.status}`)
         const v = await parse(r)
         if (alive) { setData(v); setError(null) }
