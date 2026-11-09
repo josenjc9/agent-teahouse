@@ -14,6 +14,9 @@
 |---|---|---|
 | ![白天](docs/office-day.png) | ![夜晚](docs/office-night.png) | ![儀表板](docs/dashboard.png) |
 
+## 做出自己的角色
+![流程：寫人設卡、三視圖、動作圖、檢查打包、進入庭院](docs/workflow.svg)
+
 ## 兩個 Skill
 | 資料夾 | 做什麼 | 適合 |
 |---|---|---|

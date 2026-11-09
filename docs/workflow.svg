@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" width="960" height="300" role="img" aria-labelledby="t d" font-family="-apple-system, 'PingFang TC', 'Noto Sans TC', 'Segoe UI', sans-serif">
+  <title id="t">從人設到庭院的流程</title>
+  <desc id="d">五個步驟：一，寫人設卡；二，生成三視圖；三，逐張生成動作圖；四，檢查並打包成圖集；五，角色進入庭院並隨 agent 指令行動。</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7a8a99"/></marker>
+  </defs>
+  <rect width="960" height="300" rx="16" fill="#fbf8f2"/>
+  <g stroke="#cdbfa6" stroke-width="1.5" fill="#ffffff">
+    <rect x="24"  y="70" width="160" height="150" rx="12"/>
+    <rect x="212" y="70" width="160" height="150" rx="12"/>
+    <rect x="400" y="70" width="160" height="150" rx="12"/>
+    <rect x="588" y="70" width="160" height="150" rx="12"/>
+    <rect x="776" y="70" width="160" height="150" rx="12" fill="#f3ece0"/>
+  </g>
+  <g stroke="#7a8a99" stroke-width="2" marker-end="url(#a)">
+    <line x1="186" y1="145" x2="208" y2="145"/>
+    <line x1="374" y1="145" x2="396" y2="145"/>
+    <line x1="562" y1="145" x2="584" y2="145"/>
+    <line x1="750" y1="145" x2="772" y2="145"/>
+  </g>
+  <g fill="#b0643a" font-size="30" font-weight="700" text-anchor="middle">
+    <text x="104" y="115">1</text><text x="292" y="115">2</text><text x="480" y="115">3</text><text x="668" y="115">4</text><text x="856" y="115">5</text>
+  </g>
+  <g fill="#2f3a44" font-size="19" font-weight="700" text-anchor="middle">
+    <text x="104" y="150">寫人設卡</text><text x="292" y="150">三視圖</text><text x="480" y="150">動作圖</text><text x="668" y="150">檢查打包</text><text x="856" y="150">進入庭院</text>
+  </g>
+  <g fill="#5d6b78" font-size="13.5" text-anchor="middle">
+    <text x="104" y="178">外型、個性、口吻</text><text x="104" y="198">由你決定</text>
+    <text x="292" y="178">正面、側面、背面</text><text x="292" y="198">你確認後才往下</text>
+    <text x="480" y="178">走路、坐下、說話</text><text x="480" y="198">每張一個朝向</text>
+    <text x="668" y="178">自動找角色、去底霧</text><text x="668" y="198">不合格會告訴你原因</text>
+    <text x="856" y="178">依 agent 狀態走動</text><text x="856" y="198">用 say 互相對話</text>
+  </g>
+  <text x="480" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="#2f3a44">做出自己的角色，五步進庭院</text>
+  <text x="480" y="270" text-anchor="middle" font-size="13.5" fill="#5d6b78">步驟 2、3 用能出透明底 PNG 的生圖工具（目前只實測過 Codex）；步驟 4、5 由 Skill 內建腳本完成，全程在本機</text>
+</svg>
