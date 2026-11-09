@@ -1,0 +1,4 @@
+[
+  { "name": "我的網站", "url": "https://example.com" },
+  { "name": "本機開發頁", "url": "http://127.0.0.1:5180" }
+]

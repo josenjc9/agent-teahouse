@@ -1,0 +1,13 @@
+{
+  "updatedAt": "2026-11-09T00:05:09+08:00",
+  "characters": {
+    "mochi": {
+      "status": "working",
+      "task": "整理本週排程"
+    },
+    "kuro": {
+      "status": "working",
+      "task": "查證資料來源"
+    }
+  }
+}

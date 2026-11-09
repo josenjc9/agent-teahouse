@@ -1,0 +1,17 @@
+{
+  "id": "mochi",
+  "raw": "raw/mochi",
+  "out": "../app/public/characters",
+  "scale_from": "idle_front",
+  "sequences": [
+    { "name": "idle_front", "file": "idle_front.png", "frames": 4 },
+    { "name": "idle_back", "file": "idle_back.png", "frames": 4 },
+    { "name": "still_left", "file": "still_left.png", "frames": 1 },
+    { "name": "walk_front", "file": "walk_front.png", "frames": 4 },
+    { "name": "walk_back", "file": "walk_back.png", "frames": 4 },
+    { "name": "walk_left", "file": "walk_left.png", "frames": 4 },
+    { "name": "work", "file": "work.png", "frames": 4 },
+    { "name": "talk", "file": "talk.png", "frames": 4 },
+    { "name": "rest_wave", "file": "rest_wave.png", "frames": 4 }
+  ]
+}

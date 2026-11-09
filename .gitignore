@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+__pycache__/
+providers/services.json
+.env
+.env.*
+*.pem
+*.key
+.private-words*
+raw/
