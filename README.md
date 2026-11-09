@@ -29,7 +29,7 @@
 
 ## 不會用 GitHub？
 1. 點上方的 **下載 ZIP**（不需要帳號、不需要 git），解壓縮。
-2. 把解壓縮後的 `teahouse-office` 資料夾放進你的 AI agent（例如 Claude Code 的 `~/.claude/skills/`；Codex 或其他 agent 請它先讀 `SKILL.md`）。
+2. 把解壓縮後的 `teahouse-office` 資料夾交給你的 AI agent：放進它的 skills 資料夾（各家路徑不同，請查你用的 agent 說明），或直接請它先讀該資料夾的 `SKILL.md`。
 3. 對它說：**「幫我安裝並開起來」**，之後再說「幫我做我自己的角色」。
 
 由 agent 替你執行安裝指令，你不必自己開終端機（這個流程尚未在各家真實 agent 上逐一驗證，見文末）。線上預覽只是展示，不能接你自己的 agent。
@@ -47,7 +47,7 @@ python3 scripts/set_state.py kuro working "查證資料來源"
 ```
 
 ## 交給 AI agent
-把 `teahouse-office/` 或 `teahouse-dashboard/` 整個資料夾放進 agent 的 skills 目錄（例如 Claude Code 是 `~/.claude/skills/`），對它說「幫我做我的 Office」或「幫我做一個儀表板」。每個 Skill 的 `SKILL.md` 會帶 agent 一步步問你、做完、驗收。
+把 `teahouse-office/` 或 `teahouse-dashboard/` 整個資料夾放進你的 agent 的 skills 資料夾（路徑依各家 agent 而異），對它說「幫我做我的 Office」或「幫我做一個儀表板」。每個 Skill 的 `SKILL.md` 會帶 agent 一步步問你、做完、驗收。
 Codex 或其他 agent：請它先讀該資料夾的 `SKILL.md` 再開始。
 
 ## 需要
