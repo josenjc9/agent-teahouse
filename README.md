@@ -36,7 +36,7 @@
 
 ## 快速開始
 ```bash
-git clone https://github.com/<你的帳號>/agent-teahouse.git
+git clone https://github.com/josenjc9/agent-teahouse.git
 cd agent-teahouse/teahouse-office
 ./scripts/check_env.sh                 # 只檢查環境、不安裝任何東西
 cd app && npm install && npm run dev   # 開 http://127.0.0.1:5180
