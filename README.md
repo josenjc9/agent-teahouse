@@ -13,6 +13,8 @@
 
 如果這個專案有幫到你，點右上角的 **⭐ Star**，讓更多人找得到。
 
+**導覽：** [兩個 Skill](#兩個-skill) · [快速開始](#快速開始) · [做出自己的角色](#做出自己的角色) · [需要](#需要) · [安全](#安全)
+
 ![角色隨 agent 狀態走動並互相對話：待命時在庭院散步，收到工作指令後走進會議和室坐下，兩位用對話泡泡交談，完成後離座](docs/office-demo.gif)
 
 *每一步由一行指令觸發：`set_state.py mochi working "整理本週排程"` 讓角色去工作，`set_state.py mochi say "…"` 讓角色開口說話。兩位範例角色為原創設計。*
@@ -23,9 +25,6 @@
 |---|---|---|
 | ![白天](docs/office-day.png) | ![夜晚](docs/office-night.png) | ![儀表板](docs/dashboard.png) |
 
-## 做出自己的角色
-![流程：寫人設卡、三視圖、動作圖、檢查打包、進入庭院](docs/workflow.svg)
-
 ## 兩個 Skill
 | 資料夾 | 做什麼 | 適合 |
 |---|---|---|
@@ -33,6 +32,8 @@
 | [`teahouse-dashboard/`](teahouse-dashboard/) | 單獨的玻璃質感儀表板：一份 JSON 契約、七種卡片、自己寫資料源接資料 | 只想要儀表板、不要 3D |
 
 兩邊的儀表板資料格式相同，可以先用 dashboard、之後再換成 office。
+
+儀表板也有**獨立的 repo**：[teahouse-dashboard](https://github.com/josenjc9/teahouse-dashboard)，只想用儀表板的人直接裝那個，不用下載 3D。
 
 ## 不會用 GitHub？
 1. 點頁面右上角的 **Code → Download ZIP**（不需要帳號、不需要 git），解壓縮。
@@ -56,6 +57,9 @@ python3 scripts/set_state.py kuro working "查證資料來源"
 ## 交給 AI agent
 把 `teahouse-office/` 或 `teahouse-dashboard/` 整個資料夾放進你的 agent 的 skills 資料夾（路徑依各家 agent 而異），對它說「幫我做我的 Office」或「幫我做一個儀表板」。每個 Skill 的 `SKILL.md` 會帶 agent 一步步問你、做完、驗收。
 Codex 或其他 agent：請它先讀該資料夾的 `SKILL.md` 再開始。
+
+## 做出自己的角色
+![流程：寫人設卡、三視圖、動作圖、檢查打包、進入庭院](docs/workflow.svg)
 
 ## 需要
 Node.js 20.19+（或 22.12+）、Python 3.9+、瀏覽器。做角色圖另需 Pillow 與一個生圖工具。
