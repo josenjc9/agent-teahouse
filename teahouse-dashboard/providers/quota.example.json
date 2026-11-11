@@ -1,0 +1,23 @@
+[
+  {
+    "label": "範例服務 A：每 5 小時",
+    "used": 62,
+    "limit": 100,
+    "unit": "%",
+    "resetAt": "今天 18:00"
+  },
+  {
+    "label": "範例服務 A：每週",
+    "used": 150,
+    "limit": 200,
+    "unit": "次",
+    "resetAt": "週日 00:00"
+  },
+  {
+    "label": "範例服務 B：本月",
+    "used": 9,
+    "limit": 10,
+    "unit": "GB",
+    "resetAt": "下月 1 日"
+  }
+]
