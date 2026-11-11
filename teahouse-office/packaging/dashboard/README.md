@@ -1,7 +1,7 @@
-# teahouse-dashboard　玻璃質感儀表板
+# paneboard　玻璃質感儀表板
 
 <p>
-  <a href="https://github.com/josenjc9/teahouse-dashboard/stargazers"><img src="https://img.shields.io/github/stars/josenjc9/teahouse-dashboard?style=social" alt="GitHub stars"></a>
+  <a href="https://github.com/josenjc9/paneboard/stargazers"><img src="https://img.shields.io/github/stars/josenjc9/paneboard?style=social" alt="GitHub stars"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT"></a>
 </p>
 
@@ -15,12 +15,14 @@
 
 *畫面是內附的示範資料，不代表任何真實狀況。*
 
+**可以自行建置成網頁**：`cd app && npm install && npm run build`，產生的 `dist/` 是純靜態網站，可以放到任何靜態網站主機（放在子路徑時要設定 vite 的 `base`）。
+
 *A glassy, local-first dashboard driven by one JSON contract. Write small provider scripts for your own data; a broken provider becomes a red alert card instead of a broken page.*
 
 ## 當成 Skill 使用
 
 ```bash
-git clone https://github.com/josenjc9/teahouse-dashboard.git ~/.claude/skills/teahouse-dashboard
+git clone https://github.com/josenjc9/paneboard.git ~/.claude/skills/paneboard
 ```
 
 放好後對 agent 說「幫我做一個儀表板」，它會照 `SKILL.md` 帶你做完。不用 git 的話，用 **Code → Download ZIP**，解壓縮後把資料夾放進 skills 目錄。

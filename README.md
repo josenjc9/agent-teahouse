@@ -4,6 +4,8 @@
 
 *Two agent skills: a cozy 3D Japanese-courtyard office where your AI agents walk to their desks while working, and a glassy local-first dashboard. Runs entirely on your machine.*
 
+**可以自行建置成網頁**：`cd teahouse-office/app && npm install && npm run build`，產生的 `dist/` 是純靜態網站，可以放到任何靜態網站主機（放在子路徑時要設定 vite 的 `base`）。
+
 <p>
   <a href="https://github.com/josenjc9/agent-teahouse/stargazers"><img src="https://img.shields.io/github/stars/josenjc9/agent-teahouse?style=social" alt="GitHub stars"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT"></a>
