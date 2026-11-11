@@ -37,6 +37,11 @@ for f in ('SKILL.md', 'README.md', 'SECURITY.md'):
 for f in ('app/public/data/dashboard.json', 'app/public/data/board.md', 'app/tsconfig.json', '.gitignore'):
     cp(f, f)
 
+# 範例看板文字：獨立版不提 Office
+bp = os.path.join(OUT, 'app/public/data/board.md')
+with open(bp, encoding='utf-8') as f: bt = f.read()
+with open(bp, 'w', encoding='utf-8') as f: f.write(bt.replace('建立 Office 骨架', '建立專案骨架'))
+
 # 接入說明：路徑改成單獨版
 doc = open(os.path.join(ROOT, '接入說明-儀表板.md'), encoding='utf-8').read()
 doc = (doc.replace('http://127.0.0.1:5180/dashboard.html（單獨儀表板），或 Office 上方的「儀表板」分頁', 'http://127.0.0.1:5180/')

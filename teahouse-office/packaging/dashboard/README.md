@@ -56,8 +56,4 @@ cd app && npm install && npm run dev   # 開 http://127.0.0.1:5180/
 
 只在本機跑：開發伺服器只聽 `127.0.0.1`，不連外部服務、沒有追蹤。詳見 [SECURITY.md](SECURITY.md)。
 
-## 相關專案
-
-想要角色會走動的 3D 庭院版，見 [agent-teahouse](https://github.com/josenjc9/agent-teahouse)，那裡的 Office 也內含同一套儀表板分頁。
-
 如果這個專案對你有用，歡迎給它一顆 ⭐，也歡迎開 issue 告訴我哪裡不好用。
