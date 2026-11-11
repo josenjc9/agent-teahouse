@@ -33,8 +33,6 @@
 
 兩邊的儀表板資料格式相同，可以先用 dashboard、之後再換成 office。
 
-儀表板也有**獨立的 repo**：[teahouse-dashboard](https://github.com/josenjc9/teahouse-dashboard)，只想用儀表板的人直接裝那個，不用下載 3D。
-
 ## 不會用 GitHub？
 1. 點頁面右上角的 **Code → Download ZIP**（不需要帳號、不需要 git），解壓縮。
 2. 把解壓縮後的 `teahouse-office` 資料夾交給你的 AI agent：放進它的 skills 資料夾（各家路徑不同，請查你用的 agent 說明），或直接請它先讀該資料夾的 `SKILL.md`。
