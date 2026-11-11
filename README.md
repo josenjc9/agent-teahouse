@@ -4,7 +4,14 @@
 
 *Two agent skills: a cozy 3D Japanese-courtyard office where your AI agents walk to their desks while working, and a glassy local-first dashboard. Runs entirely on your machine.*
 
-**[▶ 線上預覽（不用安裝，點開就能看）](https://josenjc9.github.io/agent-teahouse/)**　｜　[下載 ZIP](https://github.com/josenjc9/agent-teahouse/archive/refs/heads/main.zip)
+<p>
+  <a href="https://github.com/josenjc9/agent-teahouse/stargazers"><img src="https://img.shields.io/github/stars/josenjc9/agent-teahouse?style=social" alt="GitHub stars"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT"></a>
+</p>
+
+**[▶ 線上預覽（不用安裝，點開就能看）](https://josenjc9.github.io/agent-teahouse/)**
+
+如果這個專案有幫到你，點右上角的 **⭐ Star**，讓更多人找得到。
 
 ![角色隨 agent 狀態走動並互相對話：待命時在庭院散步，收到工作指令後走進會議和室坐下，兩位用對話泡泡交談，完成後離座](docs/office-demo.gif)
 
@@ -28,7 +35,7 @@
 兩邊的儀表板資料格式相同，可以先用 dashboard、之後再換成 office。
 
 ## 不會用 GitHub？
-1. 點上方的 **下載 ZIP**（不需要帳號、不需要 git），解壓縮。
+1. 點頁面右上角的 **Code → Download ZIP**（不需要帳號、不需要 git），解壓縮。
 2. 把解壓縮後的 `teahouse-office` 資料夾交給你的 AI agent：放進它的 skills 資料夾（各家路徑不同，請查你用的 agent 說明），或直接請它先讀該資料夾的 `SKILL.md`。
 3. 對它說：**「幫我安裝並開起來」**，之後再說「幫我做我自己的角色」。
 
@@ -61,6 +68,8 @@ Node.js 20.19+（或 22.12+）、Python 3.9+、瀏覽器。做角色圖另需 Pi
 
 ## 授權與素材
 程式碼以 [MIT](LICENSE) 授權。兩位範例角色是原創設計，由 AI 生圖工具（OpenAI 圖像生成，經 Codex CLI）依 `teahouse-office` 自己的人設卡與提示詞流程製作（人設卡見 `teahouse-office/references/examples/`）；3D 場景的幾何與貼圖全部由程式產生。不含第三方美術素材。前端開源套件（React、three.js、react-three-fiber 等）各依其授權，由 npm 安裝時取得。
+
+如果這個專案對你有用，歡迎給它一顆 ⭐，也歡迎開 issue 告訴我哪裡不好用。
 
 ## 目前還沒驗證
 Codex 以外的生圖工具、真實 Claude Code／Codex 工作階段的完整接入、手機與 Safari／Windows。歡迎開 issue 回報。
