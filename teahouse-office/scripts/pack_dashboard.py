@@ -62,7 +62,7 @@ for dp, dn, fn in os.walk(OUT):
         if f.endswith(('.md', '.py', '.json', '.ts', '.tsx', '.html', '.yml')):
             fp = os.path.join(dp, f)
             with open(fp, encoding='utf-8') as fh: t = fh.read()
-            t2 = t.replace('teahouse-dashboard', STANDALONE)
+            t2 = t.replace('teahouse-dashboard', STANDALONE).replace('TEAHOUSE_', 'PANEBOARD_')
             if t2 != t:
                 with open(fp, 'w', encoding='utf-8') as fh: fh.write(t2)
 print(f'已打包到 {OUT}（記得在 app/ 執行 npm install --package-lock-only 產生鎖定檔）')
