@@ -1,10 +1,17 @@
 version: 2
 updates:
+  # 只收資安更新：版本升級不自動開 PR（資安更新由 repo 的 Dependabot security updates 開）
   - package-ecosystem: npm
     directory: /teahouse-office/app
     schedule: { interval: weekly }
-    open-pull-requests-limit: 3
+    open-pull-requests-limit: 0
+    ignore:
+      - dependency-name: "@vitejs/plugin-react"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: npm
     directory: /teahouse-dashboard/app
     schedule: { interval: weekly }
-    open-pull-requests-limit: 3
+    open-pull-requests-limit: 0
+    ignore:
+      - dependency-name: "@vitejs/plugin-react"
+        update-types: ["version-update:semver-major"]
