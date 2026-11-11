@@ -40,4 +40,4 @@ Node.js 20.19+（或 22.12+）與 npm、Python 3.9+、瀏覽器。不需要任�
 | `scripts/check_dashboard.py` | 契約檢查；`tests/dashboard/` 有合格與 8 種不合格範例 |
 | `接入說明-儀表板.md` | provider 規則與可直接貼給 agent 的提示詞 |
 
-這個儀表板也是 `teahouse-office`（和風庭院 3D Office）的一個分頁，兩邊資料格式相同。
+這個儀表板也是 [agent-teahouse](https://github.com/josenjc9/agent-teahouse)（和風庭院 3D Office）的一個分頁，兩邊資料格式相同。
