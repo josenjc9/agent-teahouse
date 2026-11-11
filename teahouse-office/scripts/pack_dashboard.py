@@ -55,4 +55,14 @@ pkg['devDependencies'].pop('@types/three', None)
 write('app/package.json', json.dumps(pkg, ensure_ascii=False, indent=2) + '\n')
 write('app/vite.config.ts', "import { defineConfig } from 'vite'\nimport react from '@vitejs/plugin-react'\n\nexport default defineConfig({ plugins: [react()] })\n")
 shutil.copy2(os.path.join(ROOT, 'app', 'dashboard.html'), os.path.join(OUT, 'app', 'index.html'))   # 單獨版入口＝index.html
+# 獨立版改名：打包出來的是完全獨立的專案，名稱不帶 teahouse
+STANDALONE = 'paneboard'
+for dp, dn, fn in os.walk(OUT):
+    for f in fn:
+        if f.endswith(('.md', '.py', '.json', '.ts', '.tsx', '.html', '.yml')):
+            fp = os.path.join(dp, f)
+            with open(fp, encoding='utf-8') as fh: t = fh.read()
+            t2 = t.replace('teahouse-dashboard', STANDALONE)
+            if t2 != t:
+                with open(fp, 'w', encoding='utf-8') as fh: fh.write(t2)
 print(f'已打包到 {OUT}（記得在 app/ 執行 npm install --package-lock-only 產生鎖定檔）')
